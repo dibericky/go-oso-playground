@@ -3,6 +3,9 @@ allow(actor, action, resource) if
 
 actor User {}
 
+has_permission(_actor: User, "read", repository: Repository) if
+	repository.IsPublic;
+
 resource Repository {
 	permissions = ["read", "push", "delete"];
 	roles = ["contributor", "maintainer", "admin"];
